@@ -30,14 +30,14 @@ class CategoryDirectory extends React.PureComponent {
         {
           title: 'womens',
           imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-          size: 'large',
+          size: 'lg',
           id: 4,
           linkUrl: 'shop/womens'
         },
         {
           title: 'mens',
           imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-          size: 'large',
+          size: 'lg',
           id: 5,
           linkUrl: 'shop/mens'
         }
@@ -48,8 +48,8 @@ class CategoryDirectory extends React.PureComponent {
   render() {
     return <div className="category-directory-menu">
       {
-        this.state.sections.map(({title, id, imageUrl}) => {
-          return <MenuItem imageUrl={imageUrl} key={id} title={title} />
+        this.state.sections.map(({id, imageUrl, size, title}) => {
+          return <MenuItem imageUrl={imageUrl} key={id} size={size} title={title} />
         })
       }
     </div>;
