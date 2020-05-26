@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryDirectory from '../../components/CategoryDirectory';
+import CategoryDirectory from '../../components/category-directory';
 
 import './Homepage.scss';
 

@@ -1,5 +1,5 @@
 import React from "react";
-import MenuItem from '../MenuItem';
+import MenuItem from '../menu-item';
 
 import initialDirectoryData from './__fixtures__/directoryData';
 

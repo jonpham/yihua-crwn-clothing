@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Homepage from './pages/Homepage';
-import ShopPage from './pages/ShopPage';
+import Homepage from './pages/home-page';
+import ShopPage from './pages/shop-page';
 import './App.scss';
 
 const App = () => {
