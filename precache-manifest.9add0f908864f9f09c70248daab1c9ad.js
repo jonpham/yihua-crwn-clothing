@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a992cd8577cba8070cefe456c5779624",
+    "revision": "8165463004ea2941c2a8f02dd99aaacf",
     "url": "/yihua-crwn-clothing/index.html"
   },
   {
-    "revision": "dbcd27355a6a7b13277d",
+    "revision": "98b950b28cd0ff7a6cff",
     "url": "/yihua-crwn-clothing/static/css/main.86a03fce.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/yihua-crwn-clothing/static/js/2.98dfe06c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "dbcd27355a6a7b13277d",
-    "url": "/yihua-crwn-clothing/static/js/main.05e03d9f.chunk.js"
+    "revision": "98b950b28cd0ff7a6cff",
+    "url": "/yihua-crwn-clothing/static/js/main.77ea7530.chunk.js"
   },
   {
     "revision": "8e34de08d900b88a6003",
