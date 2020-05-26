@@ -27,6 +27,11 @@
 
     .price {
       width: 10%;
+
+      &::before { 
+        content: "$";
+      }
     }
+
   }
 }
