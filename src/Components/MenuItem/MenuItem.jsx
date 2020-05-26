@@ -1,9 +1,10 @@
 import React, { memo } from "react";
+import { withRouter } from 'react-router-dom';
 
 import './MenuItem.scss';
 
-const MenuItem = ({ imageUrl, title, size = 'md', subtitle = "Shop now"}) => (
-  <div className={`${size} menu-item`}>
+const MenuItem = ({ imageUrl, history, linkPath, match, title, size = 'md', subtitle = "Shop now"}) => (
+  <div className={`${size} menu-item`} onClick={() => history.push(`${match.url}${linkPath}`)}>
     <div className="item-background" style={{
       backgroundImage: `url(${imageUrl})`
     }}/>
@@ -14,4 +15,4 @@ const MenuItem = ({ imageUrl, title, size = 'md', subtitle = "Shop now"}) => (
   </div>
 );
 
-export default memo(MenuItem);
+export default withRouter(memo(MenuItem));
