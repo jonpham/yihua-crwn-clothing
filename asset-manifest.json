@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/yihua-crwn-clothing/static/css/main.86a03fce.chunk.css",
+    "main.js": "/yihua-crwn-clothing/static/js/main.05e03d9f.chunk.js",
+    "main.js.map": "/yihua-crwn-clothing/static/js/main.05e03d9f.chunk.js.map",
+    "runtime-main.js": "/yihua-crwn-clothing/static/js/runtime-main.e9046992.js",
+    "runtime-main.js.map": "/yihua-crwn-clothing/static/js/runtime-main.e9046992.js.map",
+    "static/js/2.98dfe06c.chunk.js": "/yihua-crwn-clothing/static/js/2.98dfe06c.chunk.js",
+    "static/js/2.98dfe06c.chunk.js.map": "/yihua-crwn-clothing/static/js/2.98dfe06c.chunk.js.map",
+    "index.html": "/yihua-crwn-clothing/index.html",
+    "precache-manifest.b0d0d403d9c4cf3603b8cfbc5de29159.js": "/yihua-crwn-clothing/precache-manifest.b0d0d403d9c4cf3603b8cfbc5de29159.js",
+    "service-worker.js": "/yihua-crwn-clothing/service-worker.js",
+    "static/css/main.86a03fce.chunk.css.map": "/yihua-crwn-clothing/static/css/main.86a03fce.chunk.css.map",
+    "static/js/2.98dfe06c.chunk.js.LICENSE.txt": "/yihua-crwn-clothing/static/js/2.98dfe06c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e9046992.js",
+    "static/js/2.98dfe06c.chunk.js",
+    "static/css/main.86a03fce.chunk.css",
+    "static/js/main.05e03d9f.chunk.js"
+  ]
+}
