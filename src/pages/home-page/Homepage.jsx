@@ -1,13 +1,13 @@
 import React from 'react';
 
-import CategoryDirectory from '../../components/category-directory';
+import CollectionDirectory from '../../components/collection-directory';
 
 import './Homepage.scss';
 
 const Homepage = () => {
   return (
     <div className="homepage">
-      <CategoryDirectory />
+      <CollectionDirectory />
     </div>
   );
 };

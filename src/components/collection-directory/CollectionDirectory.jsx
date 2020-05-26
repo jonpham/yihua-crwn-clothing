@@ -3,7 +3,7 @@ import MenuItem from '../menu-item';
 
 import initialDirectoryData from './__fixtures__/directoryData';
 
-import "./CategoryDirectory.scss";
+import "./CollectionDirectory.scss";
 
 class CategoryDirectory extends React.PureComponent {
   constructor() {
@@ -17,7 +17,7 @@ class CategoryDirectory extends React.PureComponent {
   }
 
   render() {
-    return <div className="category-directory-menu">
+    return <div className="collection-directory-menu">
       {
         this.state.sections.map(({id, ...sectionProps}) => {
           return <MenuItem key={id} {...sectionProps} />
