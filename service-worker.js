@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/yihua-crwn-clothing/precache-manifest.9add0f908864f9f09c70248daab1c9ad.js"
+  "/yihua-crwn-clothing/precache-manifest.2818cbfda155f4f724c99bc8099d5036.js"
 );
 
 self.addEventListener('message', (event) => {
