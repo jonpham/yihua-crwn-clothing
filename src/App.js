@@ -1,9 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import Header from './components/header';
 import Homepage from './pages/home-page';
 import ShopPage from './pages/shop-page';
-import Header from './components/header';
+import RegisterLoginPage from './pages/register-login-page';
 
 import './App.scss';
 
@@ -13,7 +14,8 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact={true} path="/" component={Homepage} />
-        <Route path="/shop" component={ShopPage} />
+        <Route exact={true} path="/signin" component={RegisterLoginPage} />
+        <Route exact={false} path="/shop" component={ShopPage} />
       </Switch>
     </div>
   );
