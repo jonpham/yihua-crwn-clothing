@@ -3,17 +3,20 @@ import React, { PureComponent } from "react";
 import FormInput from "../form-input";
 import CustomButton from "../custom-button";
 
-import { signInWithGoogle } from "../../auth/authUtils";
+import {
+  signInWithEmailAndPassword,
+  signInWithGoogle,
+} from "../../auth/authUtils";
 
 import "./SignIn.scss";
 
+const DEFAULT_EMPTY_FORM_STATE = { email: "", password: "" };
 class SignIn extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
+      ...DEFAULT_EMPTY_FORM_STATE,
     };
   }
 
@@ -23,13 +26,21 @@ class SignIn extends PureComponent {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
-    this.setState({ email: "", password: "" });
+    const { email, password } = this.state;
+    try {
+      await signInWithEmailAndPassword(email, password);
+      this.setState({ ...DEFAULT_EMPTY_FORM_STATE });
+    } catch (e) {
+      console.error("Error logging in with Email/PW", e);
+    }
   };
 
   render() {
+    const { email, password } = this.state;
+
     return (
       <div className="sign-in">
         <h2 className="heading">I already have an account</h2>
@@ -37,18 +48,18 @@ class SignIn extends PureComponent {
         <form onSubmit={this.handleSubmit}>
           <FormInput
             handleChange={this.handleChange}
-            label="email"
+            label="Email"
             name="email"
             type="email"
-            value={this.state.email}
+            value={email}
             required
           />
           <FormInput
             handleChange={this.handleChange}
-            label="password"
+            label="Password"
             name="password"
             type="password"
-            value={this.state.password}
+            value={password}
             required
           />
           <div className="buttons">

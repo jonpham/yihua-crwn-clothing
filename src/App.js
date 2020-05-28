@@ -23,14 +23,21 @@ class App extends React.PureComponent {
 
   // This is only related to auth, so can probably be moved into HOC.
   componentDidMount() {
-    this.unsubscribeFromAuth = onAuthStateChange(async (user) => {
-      const userRef = await createUserProfileDocument(user);
-      
-      const currentUser = !!userRef ? await userRef.get() : null;
-      
-      this.setState({ currentUser }, () => {
-        console.log(this.state.currentUser);
-      });
+    this.unsubscribeFromAuth = onAuthStateChange(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot((snapshot) =>
+          this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data(),
+            },
+          })
+        );
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
@@ -44,7 +51,9 @@ class App extends React.PureComponent {
         <Header currentUser={this.state.currentUser} />
         <Switch>
           <Route exact={true} path="/" component={Homepage} />
-          <Route exact={true} path="/signin" component={RegisterLoginPage} />
+          {!this.state.currentUser ? (
+            <Route exact={true} path="/signin" component={RegisterLoginPage} />
+          ) : null}
           <Route exact={false} path="/shop" component={ShopPage} />
         </Switch>
       </div>
