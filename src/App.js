@@ -7,7 +7,7 @@ import ShopPage from './pages/shop-page';
 import RegisterLoginPage from './pages/register-login-page';
 
 import './App.scss';
-import { auth } from './auth/firebaseUtils';
+import { onAuthStateChange } from './auth/authUtils';
 
 // This can probably be a Functional Component with Hooks & Effects.
 class App extends React.PureComponent{
@@ -22,7 +22,7 @@ class App extends React.PureComponent{
 
   // This is only related to auth, so can probably be moved into HOC.
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    this.unsubscribeFromAuth = onAuthStateChange((user) => {
       this.setState({ currentUser: user }, () => {
         console.log(this.state.currentUser);
       });

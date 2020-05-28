@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import FormInput from "../form-input";
 import CustomButton from "../custom-button";
 
-import { signInWithGoogle } from "../../auth/firebaseUtils";
+import { signInWithGoogle } from "../../auth/authUtils";
 
 import "./SignIn.scss";
 

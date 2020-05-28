@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crwn-logo.svg";
 
-import { auth } from "../../auth/firebaseUtils";
+import { signOutUser } from "../../auth/authUtils";
 
 import "./Header.scss";
 
@@ -20,7 +20,7 @@ const Header = ({ currentUser }) => (
         Contact
       </Link>
       {currentUser ? (
-        <div className="option" onClick={() => auth.signOut()}>
+        <div className="option" onClick={() => signOutUser()}>
           Sign Out
         </div>
       ) : (
