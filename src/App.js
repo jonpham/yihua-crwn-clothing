@@ -1,29 +1,34 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 
-import Header from './components/header';
-import Homepage from './pages/home-page';
-import ShopPage from './pages/shop-page';
-import RegisterLoginPage from './pages/register-login-page';
+import Header from "./components/header";
+import Homepage from "./pages/home-page";
+import ShopPage from "./pages/shop-page";
+import RegisterLoginPage from "./pages/register-login-page";
 
-import './App.scss';
-import { onAuthStateChange } from './auth/authUtils';
+import "./App.scss";
+import { onAuthStateChange } from "./auth/authUtils";
+import { createUserProfileDocument } from "./db/entityModels/userProfile";
 
 // This can probably be a Functional Component with Hooks & Effects.
-class App extends React.PureComponent{
+class App extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { 
-      currentUser: null
-    }
+    this.state = {
+      currentUser: null,
+    };
     this.unsubscribeFromAuth = null;
   }
 
   // This is only related to auth, so can probably be moved into HOC.
   componentDidMount() {
-    this.unsubscribeFromAuth = onAuthStateChange((user) => {
-      this.setState({ currentUser: user }, () => {
+    this.unsubscribeFromAuth = onAuthStateChange(async (user) => {
+      const userRef = await createUserProfileDocument(user);
+      
+      const currentUser = !!userRef ? await userRef.get() : null;
+      
+      this.setState({ currentUser }, () => {
         console.log(this.state.currentUser);
       });
     });

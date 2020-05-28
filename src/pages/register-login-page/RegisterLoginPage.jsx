@@ -5,7 +5,6 @@ import './RegisterLoginPage.scss';
 
 const RegisterLoginPage = () => (
   <div className='register-login-page'>
-      RegisterLoginPage
       <SignIn />
   </div>
 );
