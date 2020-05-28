@@ -3,6 +3,8 @@ import React, { PureComponent } from "react";
 import FormInput from "../form-input";
 import CustomButton from "../custom-button";
 
+import { signInWithGoogle } from "../../auth/firebaseUtils";
+
 import "./SignIn.scss";
 
 class SignIn extends PureComponent {
@@ -49,7 +51,12 @@ class SignIn extends PureComponent {
             value={this.state.password}
             required
           />
-          <CustomButton type="submit">Submit Form</CustomButton>
+          <div className="buttons">
+            <CustomButton type="submit">Submit Form</CustomButton>
+            <CustomButton buttonType="secondary" onClick={signInWithGoogle}>
+              Sign in with Google
+            </CustomButton>
+          </div>
         </form>
       </div>
     );
