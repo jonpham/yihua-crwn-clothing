@@ -1,5 +1,6 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Header from "./components/header";
 import Homepage from "./pages/home-page";
@@ -9,34 +10,27 @@ import RegisterLoginPage from "./pages/register-login-page";
 import "./App.scss";
 import { onAuthStateChange } from "./auth/authUtils";
 import { createUserProfileDocument } from "./db/entityModels/userProfile";
+import { setCurrentUser, clearCurrentUser } from "./redux/user/userActions";
 
 // This can probably be a Functional Component with Hooks & Effects.
 class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentUser: null,
-    };
-    this.unsubscribeFromAuth = null;
-  }
+  unsubscribeFromAuth = null;
 
   // This is only related to auth, so can probably be moved into HOC.
   componentDidMount() {
+    const { setCurrentUser, clearCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = onAuthStateChange(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-
         userRef.onSnapshot((snapshot) =>
-          this.setState({
-            currentUser: {
-              id: snapshot.id,
-              ...snapshot.data(),
-            },
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data(),
           })
         );
       } else {
-        this.setState({ currentUser: userAuth });
+        clearCurrentUser();
       }
     });
   }
@@ -48,12 +42,19 @@ class App extends React.PureComponent {
   render() {
     return (
       <div className="crwn-clothing">
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Switch>
           <Route exact={true} path="/" component={Homepage} />
-          {!this.state.currentUser ? (
-            <Route exact={true} path="/signin" component={RegisterLoginPage} />
-          ) : null}
+          <Route
+            path="/signin"
+            render={() =>
+              this.props.currentUser ? (
+                <Redirect to="/" />
+              ) : (
+                <RegisterLoginPage />
+              )
+            }
+          />
           <Route exact={false} path="/shop" component={ShopPage} />
         </Switch>
       </div>
@@ -61,4 +62,13 @@ class App extends React.PureComponent {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  clearCurrentUser: () => dispatch(clearCurrentUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
