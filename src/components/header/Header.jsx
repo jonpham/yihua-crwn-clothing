@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crwn-logo.svg";
+import CartIcon from '../cart-icon';
 
 import { signOutUser } from "../../auth/authUtils";
 
@@ -29,6 +30,7 @@ const Header = ({ currentUser }) => (
           Sign In
         </Link>
       )}
+      <CartIcon />
     </div>
   </div>
 );
