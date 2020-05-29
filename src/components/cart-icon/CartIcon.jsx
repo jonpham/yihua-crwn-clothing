@@ -12,8 +12,8 @@ const CartIcon = ({ cartCount, toggleCart }) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  cartCount: state.cart.cartItems.length || 0,
+const mapStateToProps = ({ cart: { cartItems }}) => ({
+  cartCount: cartItems.reduce( (acc, item) => acc + item.quantity, 0)
 });
 
 const mapDispatchToProps = (dispatch) => ({
