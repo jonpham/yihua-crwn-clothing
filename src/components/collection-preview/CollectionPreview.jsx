@@ -15,7 +15,7 @@ const CollectionPreview = ({ items, title }) => {
           .filter((_item, idx) => idx < MAX_ITEM_PREVIEW)
           .map((item) => {
             return (
-              <CollectionItem key={item.id} {...item} />
+              <CollectionItem key={item.id} item={item} />
             );
           })
         }
