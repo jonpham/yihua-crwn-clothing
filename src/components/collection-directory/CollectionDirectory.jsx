@@ -1,30 +1,27 @@
-import React from "react";
+import React, { memo } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import MenuItem from '../menu-item';
 
-import initialDirectoryData from './__fixtures__/directoryData';
+import { selectDirectorySections } from '../../redux/directory/directorySelectors';
 
-import "./CollectionDirectory.scss";
+import './CollectionDirectory.scss';
 
-class CategoryDirectory extends React.PureComponent {
-  constructor() {
-    super();
+const CategoryDirectory = ({ sections = [] }) => {
+  console.log (JSON.stringify(sections));
 
-    this.state = {
-      sections: [
-        ...initialDirectoryData
-      ]
-    }
-  }
+  return (
+    <div className='collection-directory-menu'>
+      {sections.map(({ id, ...sectionProps }) => {
+        return <MenuItem key={id} {...sectionProps} />;
+      })}
+    </div>
+  );
+};
 
-  render() {
-    return <div className="collection-directory-menu">
-      {
-        this.state.sections.map(({id, ...sectionProps}) => {
-          return <MenuItem key={id} {...sectionProps} />
-        })
-      }
-    </div>;
-  }
-}
+const mapStateToProps = createStructuredSelector({
+  sections: selectDirectorySections
+});
 
-export default CategoryDirectory;
+export default connect(mapStateToProps)(memo(CategoryDirectory));
