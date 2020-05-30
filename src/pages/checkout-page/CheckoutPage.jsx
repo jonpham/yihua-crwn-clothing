@@ -10,7 +10,7 @@ import {
 import "./CheckoutPage.scss";
 import CheckoutItem from '../../components/checkout-item';
 
-const CheckoutPage = ({ items, total }) => (
+const CheckoutPage = ({ items=[], total }) => (
   <div className="checkout-page">
     <div className="checkout-header">
       <div className="header-block">
@@ -29,7 +29,7 @@ const CheckoutPage = ({ items, total }) => (
         <span>Remove</span>
       </div>
     </div>
-    {items && items.map((item) => <CheckoutItem item={item} key={item.id} />)}
+    {items.map((item) => <CheckoutItem item={item} key={item.id} />)}
     <div className="total">
       <span>TOTAL: ${total}</span>
     </div>
