@@ -5,7 +5,7 @@ import CustomButton from "../custom-button";
 
 import "./SignUp.scss";
 import { createUserWithEmailAndPassword } from "../../auth/authUtils";
-import { createUserProfileDocument } from '../../db/entityModels/userProfile';
+import { createUserProfileDocument } from '../../db/entity-models/userProfile';
 
 const DEFAULT_EMPTY_FORM = {
   confirmPassword: "",

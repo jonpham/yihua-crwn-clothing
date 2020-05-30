@@ -1,16 +1,19 @@
 import React, { memo } from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from 'reselect';
 
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crwn-logo.svg";
 import CartDropdown from "../cart-dropdown";
 import CartIcon from "../cart-icon";
 
+import { selectCurrentUser } from '../../redux/user/userSelectors';
+import { selectIsCartHidden } from '../../redux/cart/cartSelectors';
 import { signOutUser } from "../../auth/authUtils";
 
 import "./Header.scss";
 
-const Header = ({ currentUser, showCartDropdown }) => (
+const Header = ({ currentUser, hideCartDropdown }) => (
   <div className="header">
     <Link className="logo-container" to="/">
       <Logo />
@@ -33,13 +36,13 @@ const Header = ({ currentUser, showCartDropdown }) => (
       )}
       <CartIcon />
     </div>
-    {showCartDropdown && <CartDropdown />}
+    {!hideCartDropdown && <CartDropdown />}
   </div>
 );
 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser: currentUser,
-  showCartDropdown: !hidden,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hideCartDropdown: selectIsCartHidden,
 });
 
 export default connect(mapStateToProps)(memo(Header));

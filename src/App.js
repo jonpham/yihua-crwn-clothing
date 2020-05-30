@@ -1,16 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from 'reselect';
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import Header from "./components/header";
+import CheckoutPage from './pages/checkout-page';
 import Homepage from "./pages/home-page";
 import ShopPage from "./pages/shop-page";
 import RegisterLoginPage from "./pages/register-login-page";
 
-import "./App.scss";
 import { onAuthStateChange } from "./auth/authUtils";
-import { createUserProfileDocument } from "./db/entityModels/userProfile";
+import { createUserProfileDocument } from "./db/entity-models/userProfile";
 import { setCurrentUser, clearCurrentUser } from "./redux/user/userActions";
+import { selectCurrentUser } from "./redux/user/userSelectors";
+
+import "./App.scss";
+
 
 // This can probably be a Functional Component with Hooks & Effects.
 class App extends React.PureComponent {
@@ -45,6 +50,8 @@ class App extends React.PureComponent {
         <Header />
         <Switch>
           <Route exact={true} path="/" component={Homepage} />
+          <Route exact={false} path="/shop" component={ShopPage} />
+          <Route exact={true} path="/checkout" component={CheckoutPage} />
           <Route
             path="/signin"
             render={() =>
@@ -55,15 +62,14 @@ class App extends React.PureComponent {
               )
             }
           />
-          <Route exact={false} path="/shop" component={ShopPage} />
         </Switch>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({
