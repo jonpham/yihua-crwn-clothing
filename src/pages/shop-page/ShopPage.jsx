@@ -1,27 +1,17 @@
-import React from 'react';
+import React, {memo } from 'react';
+import { Route } from 'react-router-dom';
 
-import INITIAL_SHOP_DATA from './__fixtures__/shopData';
-import CollectionPreview from '../../components/collection-preview';
+import CollectionsOverview from '../../components/collections-overview';
+import CollectionPage from '../../pages/collection-page';
 
-class ShopPage extends React.PureComponent {
-  constructor(props) {
-    super(props);
+import './ShopPage.scss';
 
-    this.state = {
-      collections: [ ...INITIAL_SHOP_DATA ]
-    }
-  }
-  
-  render() {
-    return (
-      <div className="shop-page">
-        {this.state.collections.map(({ id, ...otherCollectionProps}) => (
-          <CollectionPreview key={id} {...otherCollectionProps} />
-        ))}
-        
-      </div>
-    );
-  }
-}
+const ShopPage = ({ match }) => (
+  <div className="shop-page">
+    <Route exact={true} path={`${match.path}`} component={CollectionsOverview} />
+    <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
+  </div>
+);
 
-export default ShopPage;
+
+export default memo(ShopPage);
