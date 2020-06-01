@@ -10,9 +10,9 @@ import "./CollectionDirectory.scss";
 
 const CollectionDirectory = ({ sections = [] }) => (
   <div className="collection-directory-menu">
-    {sections.map(({ id, ...sectionProps }) => {
-      return <MenuItem key={id} {...sectionProps} />;
-    })}
+    {sections.map(({ id, ...sectionProps }) => (
+      <MenuItem key={id} {...sectionProps} />
+    ))}
   </div>
 );
 

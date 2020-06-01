@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 
-import './CustomButton.scss';
+import { CustomButtonContainer } from './CustomButton.styles';
 
 const CustomButton = ({children, buttonType, ...othrBtnProps }) => (
-  <button className={`${buttonType ? buttonType : 'primary'} custom-button`} {...othrBtnProps} >
+  <CustomButtonContainer type={buttonType} {...othrBtnProps} >
     {children}
-  </button>
+  </CustomButtonContainer>
 );
 
 export default memo(CustomButton);
