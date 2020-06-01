@@ -1,14 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import CollectionDirectory from '../../components/collection-directory';
+import { HomepageContainer } from "./Homepage.styles";
+import CollectionDirectory from "../../components/collection-directory";
 
-import './Homepage.scss';
+// import "./Homepage.scss";
 
 const Homepage = () => {
   return (
-    <div className="homepage">
+    <HomepageContainer>
       <CollectionDirectory />
-    </div>
+    </HomepageContainer>
   );
 };
 
